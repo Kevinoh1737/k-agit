@@ -171,7 +171,7 @@ Make the sentences natural and commonly used in {source_type} context. Each sent
     try:
         from google import genai
         client = genai.Client(api_key=api_key)
-        response = client.models.generate_content(model='gemini-2.0-flash', contents=prompt)
+        response = client.models.generate_content(model='gemini-2.5-flash', contents=prompt)
         result_text = response.text.strip()
         if result_text.startswith("```"):
             result_text = result_text.split("\n", 1)[-1].rsplit("```", 1)[0].strip()

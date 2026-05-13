@@ -9,7 +9,7 @@ client = None
 if GEMINI_API_KEY:
     client = genai.Client(api_key=GEMINI_API_KEY)
 
-STT_MODEL = "gemini-2.0-flash"
+STT_MODEL = "gemini-2.5-flash"
 
 EVALUATE_PROMPT = """You are a Korean pronunciation evaluation assistant.
 

@@ -57,7 +57,7 @@ def translate():
         from google import genai
         client = genai.Client(api_key=api_key)
         response = client.models.generate_content(
-            model="gemini-2.0-flash",
+            model="gemini-2.5-flash",
             contents=f"Translate this Korean sentence to {lang_name}. Return ONLY the translation, nothing else.\n\n{text}",
         )
         translation = response.text.strip()
@@ -173,7 +173,7 @@ def hangul_meaning():
             f'If no, respond with JSON: {{"has_meaning": false, "meaning": ""}}. '
             f'Return ONLY valid JSON, nothing else.'
         )
-        response = client_local.models.generate_content(model="gemini-2.0-flash", contents=prompt)
+        response = client_local.models.generate_content(model="gemini-2.5-flash", contents=prompt)
         result_text = response.text.strip()
         if result_text.startswith("```"):
             result_text = result_text.split("\n", 1)[-1].rsplit("```", 1)[0].strip()
@@ -223,7 +223,7 @@ def talkbot():
         stt_client = genai.Client(api_key=api_key)
         audio_part = types.Part.from_bytes(data=audio_bytes, mime_type=mime_type)
         stt_response = stt_client.models.generate_content(
-            model="gemini-2.0-flash", contents=[audio_part, stt_prompt]
+            model="gemini-2.5-flash", contents=[audio_part, stt_prompt]
         )
         stt_text = stt_response.candidates[0].content.parts[0].text.strip()
         if stt_text.startswith("```"):
@@ -323,7 +323,7 @@ Return ONLY valid JSON (no markdown, no code blocks) with this exact structure:
     try:
         from google import genai
         client_local = genai.Client(api_key=api_key)
-        response = client_local.models.generate_content(model="gemini-2.0-flash", contents=prompt)
+        response = client_local.models.generate_content(model="gemini-2.5-flash", contents=prompt)
         result_text = response.text.strip()
         if result_text.startswith("```"):
             result_text = result_text.split("\n", 1)[-1].rsplit("```", 1)[0].strip()

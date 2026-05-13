@@ -32,7 +32,7 @@ def detect_gender(nickname):
         return "neutral"
     try:
         response = client.models.generate_content(
-            model="gemini-2.0-flash",
+            model="gemini-2.5-flash",
             contents=f'Given the name "{nickname}", what gender is this person most likely? Consider all languages and cultures. Respond with ONLY one word: male, female, or neutral',
             config={"temperature": 0.0, "max_output_tokens": 10},
         )
@@ -89,7 +89,7 @@ def chat(message, ui_lang, history, star_id=None, custom_name=None, nickname=Non
 
     try:
         response = client.models.generate_content(
-            model="gemini-2.0-flash",
+            model="gemini-2.5-flash",
             contents=contents,
             config={
                 "temperature": 0.8,
