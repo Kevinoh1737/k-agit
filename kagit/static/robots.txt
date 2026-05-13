@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /login/
+Disallow: /sw.js
+
+Sitemap: https://k-agit.com/sitemap.xml

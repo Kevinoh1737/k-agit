@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="{{ html_lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="75d230ce-dfce-4e1e-8ee1-5343fbce58a5" type="text/javascript" async></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MSLH2WJ8K1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MSLH2WJ8K1');
+    </script>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#121218">
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ desc }}">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <meta name="author" content="K-AGIT">
+    <link rel="canonical" href="https://k-agit.com/app">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="K-AGIT">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ desc }}">
+    <meta property="og:url" content="https://k-agit.com/app">
+    <meta property="og:image" content="https://k-agit.com/static/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="{{ title }}">
+    <meta property="og:locale" content="{{ og_locale }}">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="zh_CN">
+    <meta property="og:locale:alternate" content="id_ID">
+    <meta property="og:locale:alternate" content="vi_VN">
+    <meta property="og:locale:alternate" content="ar_SA">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="pt_BR">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ desc }}">
+    <meta name="twitter:image" content="https://k-agit.com/static/og-image.png">
+    <meta name="twitter:image:alt" content="{{ title }}">
+
+    <link rel="alternate" hreflang="en" href="https://k-agit.com/app">
+    <link rel="alternate" hreflang="ja" href="https://k-agit.com/app">
+    <link rel="alternate" hreflang="es" href="https://k-agit.com/app">
+    <link rel="alternate" hreflang="zh" href="https://k-agit.com/app">
+    <link rel="alternate" hreflang="id" href="https://k-agit.com/app">
+    <link rel="alternate" hreflang="vi" href="https://k-agit.com/app">
+    <link rel="alternate" hreflang="ar" href="https://k-agit.com/app">
+    <link rel="alternate" hreflang="fr" href="https://k-agit.com/app">
+    <link rel="alternate" hreflang="pt" href="https://k-agit.com/app">
+    <link rel="alternate" hreflang="x-default" href="https://k-agit.com/app">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "K-AGIT",
+        "url": "https://k-agit.com/app",
+        "description": "Learn Korean through K-Pop and K-Drama with AI-powered phonetic conversion in 9 languages, real-time pronunciation coaching, Hangul writing practice, and AI fan-friend chat companions.",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires a modern web browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "inLanguage": ["en", "ja", "es", "zh", "id", "vi", "ar", "fr", "pt"],
+        "creator": {
+            "@type": "Organization",
+            "name": "K-AGIT",
+            "url": "https://k-agit.com",
+            "logo": "https://k-agit.com/static/icon-512.png"
+        }
+    }
+    </script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16.png">
+    <link rel="apple-touch-icon" href="/static/apple-touch-icon.png">
+    <link rel="manifest" href="/static/manifest.json">
+    <link rel="stylesheet" href="/static/style.css?v=79">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+Thai:wght@400;500;700&family=Noto+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body data-has-gemini="{{ 'true' if has_gemini else 'false' }}">
+    <div class="app-shell">
+        <header class="app-bar">
+            <a href="/" class="app-title-link"><img src="/static/images/logo_sm.png" alt="K-agit" class="app-title-img"></a>
+            <div class="energy-indicator" id="energyIndicator">
+                <svg class="energy-heart" width="18" height="18" viewBox="0 0 24 24" fill="#e94596" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                <span class="energy-count" id="energyCount">30</span>
+            </div>
+            <div class="learning-mode-toggle">
+                <span class="lm-label active" id="lmLabelHangul" data-i18n="mode_hangul">한글</span>
+                <button class="lm-toggle-btn" id="learningModeToggle" data-mode="hangul">
+                    <span class="lm-toggle-thumb"></span>
+                </button>
+                <span class="lm-label" id="lmLabelKorean" data-i18n="mode_korean">한국어</span>
+            </div>
+        </header>
+
+        <main class="app-content">
+            <div id="homePage" class="page-panel">
+                <div id="homeContent" class="home-content"></div>
+            </div>
+
+            <div id="practicePage" class="page-panel hidden">
+                <nav id="koreanSubTabBar" class="sub-tab-bar hidden">
+                    <button class="sub-tab-btn active" data-subtab="learn" data-i18n="sub_learn">Learn</button>
+                    <button class="sub-tab-btn" data-subtab="listen" data-i18n="sub_listen">Listen</button>
+                    <button class="sub-tab-btn" data-subtab="speak" data-i18n="sub_speak">Speak</button>
+                </nav>
+
+                <nav id="hangulSubTabBar" class="sub-tab-bar hidden">
+                    <button class="hangul-sub-tab-btn active" data-hsubtab="letters" data-i18n="hangul_sub_letters">Letters</button>
+                    <button class="hangul-sub-tab-btn" data-hsubtab="words" data-i18n="hangul_sub_words">Words</button>
+                    <button class="hangul-sub-tab-btn" data-hsubtab="sentences" data-i18n="hangul_sub_sentences">Sentences</button>
+                </nav>
+
+                <div id="learnSubTab" class="sub-tab-panel">
+                    <div id="learnBrowser" class="learn-browser">
+                        <div class="sentence-controls">
+                            <div id="categoryChips" class="category-chips"></div>
+                            <button id="randomBtn" class="random-btn" data-i18n="random_sentence">Random Sentence</button>
+                        </div>
+                        <div id="sentencesList" class="sentences-list"></div>
+                    </div>
+                    <div id="learnContent" class="learn-content hidden">
+                        <div id="sentenceNav" class="sentence-nav hidden">
+                            <button type="button" class="sent-nav-btn" id="sentPrevBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+                            <span class="sent-nav-pos" id="sentNavPos">1 / 5</span>
+                            <button type="button" class="sent-nav-btn" id="sentNextBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+                        </div>
+                        <div id="learnHeader" class="stage-header"></div>
+                        <div class="learn-sentence-card">
+                            <div class="learn-sentence-kr" id="learnSentenceKr"></div>
+                            <div class="lyric-phonetic" id="learnSentencePh"></div>
+                            <div class="learn-sentence-tr" id="learnSentenceTr"></div>
+                        </div>
+                        <div id="grammarLoading" class="grammar-loading hidden">
+                            <div class="shimmer-block"></div>
+                            <div class="shimmer-block short"></div>
+                            <div class="shimmer-block"></div>
+                            <div class="shimmer-block short"></div>
+                        </div>
+                        <div id="grammarCards" class="grammar-cards hidden"></div>
+                        <button class="flow-next-btn" id="learnNextBtn" data-i18n="learn_next_listen">Listen →</button>
+                    </div>
+                </div>
+
+                <div id="listenSubTab" class="sub-tab-panel hidden">
+                    <div id="listenPlaceholder" class="stage-placeholder">
+                        <div class="placeholder-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="1.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></div>
+                        <p class="placeholder-desc" data-i18n="no_sentence_selected">Select a sentence in the Learn tab first.</p>
+                    </div>
+                    <div id="listenView" class="stage-view hidden">
+                        <div id="stageHeader" class="stage-header"></div>
+                        <div class="lyric-card" id="lyricCard">
+                            <div class="lyric-original" id="lyricOriginal"></div>
+                            <div class="lyric-phonetic-wrap">
+                                <div class="lyric-phonetic" id="lyricPhonetic"></div>
+                                <div class="lyric-loading hidden" id="lyricLoading">
+                                    <span class="loading-dot"></span>
+                                    <span class="loading-dot"></span>
+                                    <span class="loading-dot"></span>
+                                </div>
+                            </div>
+                            <div class="lyric-lang-label" id="lyricLangLabel"></div>
+                        </div>
+                        <div class="stage-actions">
+                            <div class="stage-action-item">
+                                <button class="stage-action-btn listen-btn" id="stageListenBtn">
+                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                                </button>
+                                <span class="stage-action-label" data-i18n="stage_listen">Listen</span>
+                            </div>
+                        </div>
+                        <button class="flow-next-btn" id="listenNextBtn" data-i18n="listen_next_speak">Speak →</button>
+                    </div>
+                </div>
+
+                <div id="speakSubTab" class="sub-tab-panel hidden">
+                    <div id="speakPlaceholder" class="stage-placeholder">
+                        <div class="placeholder-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="1.5"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg></div>
+                        <p class="placeholder-desc" data-i18n="no_sentence_selected">Select a sentence in the Learn tab first.</p>
+                    </div>
+                    <div id="speakView" class="stage-view hidden">
+                        <div class="lyric-card speak-lyric-card">
+                            <div class="lyric-original" id="speakOriginal"></div>
+                            <div class="lyric-phonetic" id="speakSentencePh"></div>
+                        </div>
+                        <div class="stage-actions">
+                            <div class="stage-action-item">
+                                <button class="stage-action-btn listen-btn" id="speakListenBtn">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+                                </button>
+                                <span class="stage-action-label" data-i18n="stage_listen">Listen</span>
+                            </div>
+                            <div class="stage-action-item">
+                                <button class="stage-action-btn record-btn" id="stageRecordBtn">
+                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                </button>
+                                <span class="stage-action-label" id="recordLabel" data-i18n="stage_record">Record</span>
+                            </div>
+                        </div>
+                        <div class="waveform-wrap hidden" id="waveformWrap">
+                            <canvas id="waveformCanvas"></canvas>
+                        </div>
+                        <div id="recordingPlayback" class="recording-playback hidden">
+                            <span class="playback-label" data-i18n="stage_my_recording">My Recording</span>
+                            <button id="playRecordingBtn" class="play-recording-btn" data-i18n="stage_play_again">▶ Play Again</button>
+                        </div>
+                        <div id="sttFeedback" class="stt-feedback hidden"></div>
+                        <div class="speak-flow-btns">
+                            <button class="flow-back-btn" id="speakBackBtn" data-i18n="speak_back_learn">← Learn</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="hangulLettersPanel" class="sub-tab-panel hidden">
+                    <div class="hangul-section-tabs">
+                        <button class="hangul-cat-btn active" data-cat="consonants" data-i18n="hangul_consonants">Consonants</button>
+                        <button class="hangul-cat-btn" data-cat="vowels" data-i18n="hangul_vowels">Vowels</button>
+                        <button class="hangul-cat-btn" data-cat="double" data-i18n="hangul_double">Double</button>
+                        <button class="hangul-cat-btn" data-cat="complex" data-i18n="hangul_complex">Complex</button>
+                    </div>
+                    <div id="lettersProgressBar" class="letters-progress-bar">
+                        <span id="lettersProgressText" class="letters-progress-text"></span>
+                        <div class="letters-progress-track"><div id="lettersProgressFill" class="letters-progress-fill"></div></div>
+                    </div>
+                    <div id="letterLessonView" class="letter-lesson-view">
+                        <div class="letter-lesson-card">
+                            <div id="letterCharBig" class="letter-char-big"></div>
+                            <div id="letterName" class="letter-name"></div>
+                            <div id="letterRoman" class="letter-roman"></div>
+                            <button id="letterListenBtn" class="letter-listen-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></button>
+                            <div id="letterCompare" class="letter-compare"></div>
+                            <div id="letterTip" class="letter-tip"></div>
+                            <div id="letterExample" class="letter-example"></div>
+                        </div>
+                        <div class="letter-keyboard-section">
+                            <p id="letterKbPrompt" class="letter-kb-prompt" data-i18n="letter_press_key">Press the highlighted key</p>
+                            <div id="letterKeyboard" class="hangul-keyboard-display letter-mini-kb"></div>
+                            <div id="letterKeyResult" class="letter-key-result hidden">
+                                <span class="letter-key-check">✓</span>
+                            </div>
+                        </div>
+                        <div class="letter-nav-row">
+                            <button id="letterPrevBtn" class="letter-nav-btn">◀</button>
+                            <span id="letterCounter" class="letter-counter"></span>
+                            <button id="letterNextBtn" class="letter-nav-btn">▶</button>
+                        </div>
+                    </div>
+                    <div id="lettersListView" class="letters-list-view hidden">
+                        <div id="jamoCardsContainer" class="jamo-cards-container"></div>
+                    </div>
+                    <div class="letters-view-toggle">
+                        <button id="lettersViewToggle" class="letters-view-toggle-btn" data-i18n="letters_view_list">View All</button>
+                    </div>
+                </div>
+
+                <div id="hangulWordsPanel" class="sub-tab-panel hidden">
+                    <div id="wordsSourceHeader" class="words-source-header hidden"></div>
+                    <div class="chip-bar-wrap">
+                        <div id="wordsChipBar" class="words-chip-bar"></div>
+                        <button id="wordsShuffleBtn" class="target-next-btn" aria-label="Next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+                    </div>
+                    <div class="words-target-area">
+                        <div id="wordsTargetComposed" class="words-target-composed"></div>
+                        <div id="wordsTargetWord" class="words-target-word"></div>
+                        <div id="wordsTargetPhonetic" class="words-target-phonetic"></div>
+                        <div id="wordsTargetMeaning" class="words-target-meaning"></div>
+                    </div>
+                    <div class="hangul-type-output-card">
+                        <div id="wordsTypeOutput" class="hangul-type-output" data-i18n-placeholder="hangul_type_placeholder"></div>
+                        <div id="wordsMatchResult" class="words-match-result hidden"></div>
+                    </div>
+                    <div id="wordsKeyboard" class="hangul-keyboard-display hangul-type-kb"></div>
+                    <div class="hangul-kb-shift-wrap">
+                        <button id="wordsShiftBtn" class="hangul-shift-btn" data-i18n="kb_shift">⇧ Shift</button>
+                    </div>
+                    <div class="hangul-type-bottom-row">
+                        <button id="wordsBackspace" class="hangul-type-action-btn hangul-type-bksp">⌫</button>
+                        <button id="wordsSpace" class="hangul-type-action-btn hangul-type-space" data-i18n="kb_space">Space</button>
+                    </div>
+                </div>
+
+                <div id="hangulSentencesPanel" class="sub-tab-panel hidden">
+                    <div id="hSentSourceHeader" class="words-source-header hidden"></div>
+                    <div class="words-target-area">
+                        <div class="sent-target-row">
+                            <div id="hSentTarget" class="hsent-target"></div>
+                            <button id="sentShuffleBtn" class="target-next-btn" aria-label="Next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+                        </div>
+                        <div id="hSentPhonetic" class="words-target-phonetic"></div>
+                        <div id="hSentMeaning" class="words-target-meaning"></div>
+                    </div>
+                    <div class="hangul-type-output-card">
+                        <div id="hSentOutput" class="hangul-type-output hsent-output"></div>
+                    </div>
+                    <div class="hsent-score hidden" id="hSentScore"></div>
+                    <div id="hSentKeyboard" class="hangul-keyboard-display hangul-type-kb"></div>
+                    <div class="hangul-kb-shift-wrap">
+                        <button id="hSentShiftBtn" class="hangul-shift-btn" data-i18n="kb_shift">⇧ Shift</button>
+                    </div>
+                    <div class="hangul-type-bottom-row">
+                        <button id="hSentBackspace" class="hangul-type-action-btn hangul-type-bksp">⌫</button>
+                        <button id="hSentSpace" class="hangul-type-action-btn hangul-type-space" data-i18n="kb_space">Space</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="labPage" class="page-panel hidden">
+                <div class="chat-container">
+                    <div id="starSelectScreen" class="star-select-screen">
+                        <div class="star-select-top-row">
+                            <h2 class="star-select-title" data-i18n="chat_select_title">Who's your favorite K-star?</h2>
+                            <button id="myChatsBtn" class="my-chats-btn" data-i18n="my_chats">My Chats</button>
+                        </div>
+
+                        <div class="star-section-label" data-i18n="chat_kpop_section">K-Pop Stars</div>
+                        <div id="kpopStarGrid" class="star-grid"></div>
+
+                        <div class="star-section-label" data-i18n="chat_actor_section">Drama Stars</div>
+                        <div id="actorStarGrid" class="star-grid"></div>
+
+                        <div class="custom-star-section">
+                            <div class="star-section-label" data-i18n="chat_custom_label">Or type any name</div>
+                            <div class="custom-star-input-wrap">
+                                <input type="text" id="customStarInput" class="custom-star-input" data-i18n-placeholder="chat_custom_placeholder" placeholder="Enter a name..." maxlength="100" autocomplete="off">
+                                <button id="customStarBtn" class="custom-star-btn" data-i18n="chat_custom_btn">Start Chat</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="chatHistoryScreen" class="star-select-screen hidden">
+                        <div class="chat-history-header">
+                            <button id="chatHistoryBackBtn" class="chat-history-back-btn" data-i18n="my_chats_back">Back</button>
+                            <h2 class="star-select-title" data-i18n="my_chats">My Chats</h2>
+                        </div>
+                        <div id="chatHistoryList" class="chat-history-list"></div>
+                        <p id="chatHistoryEmpty" class="chat-history-empty" data-i18n="my_chats_empty">No saved conversations yet</p>
+                    </div>
+
+                    <div id="nicknameInputScreen" class="star-select-screen hidden">
+                        <h2 class="star-select-title" data-i18n="nickname_title">Name your fan-friend</h2>
+                        <p class="nickname-subtitle" data-i18n="nickname_subtitle">Your bilingual buddy who shares your love for this star</p>
+                        <div class="nickname-input-section">
+                            <div class="nickname-input-wrap">
+                                <input type="text" id="nicknameInput" class="custom-star-input" data-i18n-placeholder="nickname_placeholder" placeholder="Enter a nickname..." maxlength="50" autocomplete="off">
+                            </div>
+                            <div id="genderSelectRow" class="gender-select-row hidden">
+                                <button class="gender-btn" data-gender="female" data-i18n="gender_female">Female</button>
+                                <button class="gender-btn" data-gender="male" data-i18n="gender_male">Male</button>
+                            </div>
+                            <div class="nickname-btn-row">
+                                <button id="nicknameBackBtn" class="nickname-back-btn" data-i18n="nickname_back">Back</button>
+                                <button id="nicknameConfirmBtn" class="custom-star-btn" data-i18n="nickname_confirm">Start Chat</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="chatActiveScreen" class="chat-active-screen hidden">
+                        <div class="chat-header">
+                            <div class="chat-header-info">
+                                <div class="chat-avatar" id="chatStarAvatar"><div class="star-initial">K</div></div>
+                                <div class="chat-header-text">
+                                    <span class="chat-bot-name" id="chatStarName">Star</span>
+                                    <span class="chat-bot-status" id="chatStarGroup"></span>
+                                </div>
+                            </div>
+                            <button id="chatChangeStar" class="chat-change-star-btn" data-i18n="chat_change_star">Change</button>
+                        </div>
+                        <div class="chat-messages" id="chatMessages"></div>
+                        <div id="chatHangulKeyboard" class="chat-hangul-keyboard hidden">
+                            <div class="chat-kb-preview" id="chatKbPreview"></div>
+                            <div class="chat-kb-keys" id="chatKbKeys"></div>
+                            <div class="chat-kb-actions">
+                                <button id="chatKbShift" class="chat-kb-action-btn chat-kb-shift" data-i18n="kb_shift">⇧ Shift</button>
+                                <button id="chatKbSpace" class="chat-kb-action-btn chat-kb-space" data-i18n="kb_space">Space</button>
+                                <button id="chatKbBackspace" class="chat-kb-action-btn chat-kb-bksp">⌫</button>
+                            </div>
+                        </div>
+                        <div class="chat-input-bar" id="chatTextInputBar">
+                            <button id="chatKbToggle" class="chat-kb-toggle-btn" data-i18n-title="chat_kb_toggle" title="Korean keyboard"><svg viewBox="0 0 20 16" stroke-width="1.5"><rect x="1" y="1" width="18" height="14" rx="2"/><line x1="5" y1="5" x2="7" y2="5"/><line x1="9" y1="5" x2="11" y2="5"/><line x1="13" y1="5" x2="15" y2="5"/><line x1="5" y1="9" x2="7" y2="9"/><line x1="9" y1="9" x2="11" y2="9"/><line x1="13" y1="9" x2="15" y2="9"/><line x1="7" y1="12.5" x2="13" y2="12.5"/></svg></button>
+                            <input type="text" id="chatInput" class="chat-input" data-i18n-placeholder="chat_placeholder" placeholder="Say something..." maxlength="500" autocomplete="off">
+                            <button id="chatSendBtn" class="chat-send-btn" data-i18n-title="chat_send" title="Send">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="talkbotActiveScreen" class="chat-active-screen hidden">
+                        <div class="chat-header">
+                            <div class="chat-header-info">
+                                <div class="chat-avatar" id="talkStarAvatar"><div class="star-initial">K</div></div>
+                                <div class="chat-header-text">
+                                    <span class="chat-bot-name" id="talkStarName">Star</span>
+                                    <span class="chat-bot-status" id="talkStarGroup"></span>
+                                </div>
+                            </div>
+                            <button id="talkChangeStar" class="chat-change-star-btn" data-i18n="chat_change_star">Change</button>
+                        </div>
+                        <div class="talkbot-messages" id="talkMessages"></div>
+                        <div class="talkbot-mic-area">
+                            <div class="talkbot-waveform-wrap hidden" id="talkWaveformWrap">
+                                <canvas id="talkWaveformCanvas"></canvas>
+                            </div>
+                            <button id="talkMicBtn" class="talkbot-mic-btn">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                            </button>
+                            <span id="talkMicLabel" class="talkbot-mic-label" data-i18n="talkbot_tap_to_speak">Tap to speak</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="profilePage" class="page-panel hidden">
+                <div id="profileSubBadge" class="profile-sub-badge"></div>
+                <div class="profile-section">
+                    <div class="profile-avatar-container">
+                        <div class="profile-avatar" id="profileAvatar">
+                            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#9a9ab0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </div>
+                        <button id="editProfilePicBtn" class="edit-profile-pic-btn" style="display:none">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                        </button>
+                        <input type="file" id="profilePicInput" accept="image/*" class="hidden">
+                    </div>
+                    <div class="profile-name-container">
+                        <h2 class="profile-name" id="profileName"></h2>
+                        <button id="editNicknameBtn" class="edit-nickname-btn" style="display:none">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                        </button>
+                    </div>
+                    <p class="profile-status" id="profileStatus"></p>
+                </div>
+                <div class="auth-section" id="authSection">
+                    <button class="auth-google-btn" id="authGoogleBtn" onclick="window.location.href='/login/google'">
+                        <svg width="18" height="18" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                        <span data-i18n="auth_google_login">Continue with Google</span>
+                    </button>
+                    <div class="auth-divider">
+                        <span class="auth-divider-line"></span>
+                        <span class="auth-divider-text" data-i18n="auth_or">or</span>
+                        <span class="auth-divider-line"></span>
+                    </div>
+                    <form class="auth-form" id="authForm" onsubmit="return false;">
+                        <div class="auth-error hidden" id="authError"></div>
+                        <input type="text" class="auth-input" id="authName" data-i18n-placeholder="auth_name" placeholder="Name (optional)">
+                        <input type="email" class="auth-input" id="authEmail" data-i18n-placeholder="auth_email" placeholder="Email" required>
+                        <input type="password" class="auth-input" id="authPassword" data-i18n-placeholder="auth_password" placeholder="Password" required>
+                        <button type="submit" class="auth-submit-btn" id="authSubmitBtn" data-i18n="auth_signup">Sign Up</button>
+                        <p class="auth-toggle-text">
+                            <span id="authToggleMsg" data-i18n="auth_have_account">Already have an account?</span>
+                            <a href="#" id="authToggleLink" data-i18n="auth_signin">Log In</a>
+                        </p>
+                    </form>
+                </div>
+                <div class="profile-stats" id="profileStats">
+                    <div class="stat-card">
+                        <span class="stat-value" id="statDayCount">--</span>
+                        <span class="stat-label" id="statDayLabel"></span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="statExpressions">0</span>
+                        <span class="stat-label" data-i18n="profile_expressions">Expressions Mastered</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="statWords">0</span>
+                        <span class="stat-label" data-i18n="profile_words">Words Mastered</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="statLevel"></span>
+                        <span class="stat-label" data-i18n="profile_agit_level">Agit Level</span>
+                    </div>
+                </div>
+                <div class="profile-energy-section" id="profileEnergySection">
+                    <div class="profile-energy-header">
+                        <span data-i18n="profile_energy_title">Energy</span>
+                        <span class="profile-energy-count" id="profileEnergyCount"></span>
+                    </div>
+                    <div class="profile-energy-bar-track">
+                        <div class="profile-energy-bar-fill" id="profileEnergyFill"></div>
+                    </div>
+                    <button class="profile-energy-toggle" id="profileEnergyToggle">
+                        <span data-i18n="profile_energy_detail">Details</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="profile-energy-details hidden" id="profileEnergyDetails"></div>
+                </div>
+                <div class="lang-select-section">
+                    <label class="lang-select-label" data-i18n="profile_lang_label">App Language</label>
+                    <select id="uiLangSelect" class="lang-select"></select>
+                </div>
+                <div class="profile-bottom-cta" id="profileBottomCta"></div>
+                <div class="auth-user-section hidden" id="authUserSection">
+                    <button class="auth-logout-btn" id="authLogoutBtn" onclick="window.location.href='/auth/logout'">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                        <span data-i18n="auth_logout">Log Out</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <button class="nav-btn active" data-page="home">
+                <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+                <span class="nav-label" data-i18n="nav_home">Home</span>
+            </button>
+            <button class="nav-btn" data-page="practice">
+                <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg></span>
+                <span class="nav-label" data-i18n="nav_practice">Practice</span>
+            </button>
+            <button class="nav-btn" data-page="lab">
+                <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                <span class="nav-label" data-i18n="nav_lab">Chat</span>
+            </button>
+            <button class="nav-btn" data-page="profile">
+                <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+                <span class="nav-label" data-i18n="nav_profile">Profile</span>
+            </button>
+        </nav>
+    </div>
+
+    <div id="onboardingOverlay" class="onboarding-overlay hidden">
+        <div class="onboarding-container">
+            <img src="/static/images/logo_md.png" alt="K-agit" class="onboarding-logo-img">
+
+            <div id="onboardingStep1" class="onboarding-step">
+                <h2 class="onboarding-title" data-i18n="onboarding_step1_title">What interests you more?</h2>
+                <div class="onboarding-cards">
+                    <button class="onboarding-card" data-mode="hangul" id="obCardHangul">
+                        <span class="onboarding-card-icon">ㄱㄴㄷ</span>
+                        <span class="onboarding-card-title" data-i18n="onboarding_hangul_title">Hangul</span>
+                        <span class="onboarding-card-desc" data-i18n="onboarding_hangul_desc">Learn to read & write Korean characters</span>
+                    </button>
+                    <button class="onboarding-card" data-mode="korean" id="obCardKorean">
+                        <span class="onboarding-card-icon">한국어</span>
+                        <span class="onboarding-card-title" data-i18n="onboarding_korean_title">Korean</span>
+                        <span class="onboarding-card-desc" data-i18n="onboarding_korean_desc">Practice sentences & conversation</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="onboardingStep2" class="onboarding-step hidden">
+                <h2 class="onboarding-title" data-i18n="onboarding_step2_title">Pick your favorite K-star</h2>
+                <div class="onboarding-star-section">
+                    <div class="onboarding-section-label" data-i18n="chat_kpop_section">K-Pop Stars</div>
+                    <div id="obKpopGrid" class="onboarding-star-grid"></div>
+                    <div class="onboarding-section-label" data-i18n="chat_actor_section">Drama Stars</div>
+                    <div id="obActorGrid" class="onboarding-star-grid"></div>
+                </div>
+            </div>
+
+            <button id="onboardingStartBtn" class="onboarding-start-btn" disabled data-i18n="onboarding_start">Start</button>
+        </div>
+    </div>
+
+    <script>
+        window.KAGIT_USER = {{ user_data | tojson if user_data else 'null' }};
+    </script>
+    <script src="/static/i18n.js?v=79"></script>
+    <script src="/static/hangul_data.js?v=55"></script>
+    <script src="/static/jamo_descriptions.js?v=55"></script>
+    <script src="/static/script.js?v=79"></script>
+    <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js',{scope:'/'}).catch(function(){});}</script>
+</body>
+</html>

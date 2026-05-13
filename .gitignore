@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# Environments / secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+
+# Test / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Logs
+*.log
+
+# Migration artifacts we don't want in repo
+kagit_migration.zip
+extracted/
+kagit_migration_guide.md
+
+# Static assets that will live on R2 (not in container image)
+# Keep small icons/favicons in repo for now; large card images move to R2 in Phase 2.
+# (Uncomment after R2 upload is complete:)
+# kagit/static/images/cards/
+# kagit/static/images/stars/
+# kagit/static/audio/jamo/
+
+# Alembic
+*.pyc

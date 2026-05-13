@@ -1,0 +1,25 @@
+.git
+.gitignore
+.venv
+venv
+__pycache__
+*.pyc
+.pytest_cache
+.coverage
+.env
+.env.local
+.env.*.local
+extracted/
+kagit_migration.zip
+kagit_migration_guide.md
+tests/
+README.md
+*.md
+.vscode
+.idea
+.DS_Store
+# Heavy card/audio assets — these live on R2 (Phase 2)
+# Uncomment after uploading to R2:
+# kagit/static/images/cards/
+# kagit/static/images/stars/
+# kagit/static/audio/

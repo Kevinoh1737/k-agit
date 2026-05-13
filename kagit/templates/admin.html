@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-AGIT Admin</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0e0e14;
+            color: #d0d0e0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        a { color: #6ec1ff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            background: #16161e;
+            border: 1px solid #2a2a3a;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .admin-header h1 {
+            font-size: 1.3rem;
+            color: #fff;
+        }
+        .admin-header .admin-email {
+            font-size: 0.82rem;
+            color: #8888a0;
+        }
+        .admin-header .back-link {
+            font-size: 0.82rem;
+            margin-left: 16px;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+        .stat-card {
+            background: #16161e;
+            border: 1px solid #2a2a3a;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .stat-card .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #6ec1ff;
+        }
+        .stat-card .stat-label {
+            font-size: 0.8rem;
+            color: #8888a0;
+            margin-top: 4px;
+        }
+
+        .section {
+            background: #16161e;
+            border: 1px solid #2a2a3a;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .section h2 {
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 8px;
+        }
+        .search-form input {
+            padding: 8px 12px;
+            border: 1px solid #2a2a3a;
+            border-radius: 8px;
+            background: #0e0e14;
+            color: #d0d0e0;
+            font-size: 0.85rem;
+            outline: none;
+            width: 220px;
+        }
+        .search-form input:focus {
+            border-color: #6ec1ff;
+        }
+        .search-form button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            background: #6ec1ff;
+            color: #0e0e14;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .search-form .clear-btn {
+            background: transparent;
+            color: #8888a0;
+            border: 1px solid #2a2a3a;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+        }
+        th {
+            text-align: left;
+            padding: 10px 12px;
+            border-bottom: 1px solid #2a2a3a;
+            color: #8888a0;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #1a1a28;
+            vertical-align: middle;
+        }
+        tr:hover td {
+            background: #1a1a28;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.72rem;
+            font-weight: 600;
+        }
+        .badge-premium {
+            background: rgba(255, 215, 0, 0.15);
+            color: #ffd700;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        .badge-free {
+            background: rgba(136, 136, 160, 0.1);
+            color: #8888a0;
+            border: 1px solid rgba(136, 136, 160, 0.2);
+        }
+        .badge-completed {
+            background: rgba(80, 200, 120, 0.12);
+            color: #50c878;
+            border: 1px solid rgba(80, 200, 120, 0.25);
+        }
+        .badge-pending {
+            background: rgba(240, 160, 48, 0.12);
+            color: #f0a030;
+            border: 1px solid rgba(240, 160, 48, 0.25);
+        }
+        .badge-refunded {
+            background: rgba(224, 64, 96, 0.12);
+            color: #e04060;
+            border: 1px solid rgba(224, 64, 96, 0.25);
+        }
+
+        .toggle-btn {
+            padding: 5px 12px;
+            border: 1px solid #2a2a3a;
+            border-radius: 6px;
+            background: #0e0e14;
+            color: #d0d0e0;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .toggle-btn:hover {
+            border-color: #6ec1ff;
+            color: #6ec1ff;
+        }
+        .toggle-btn.is-premium {
+            border-color: rgba(224, 64, 96, 0.4);
+            color: #e04060;
+        }
+        .toggle-btn.is-premium:hover {
+            border-color: #e04060;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-top: 16px;
+            font-size: 0.82rem;
+        }
+        .pagination a {
+            padding: 6px 14px;
+            border: 1px solid #2a2a3a;
+            border-radius: 6px;
+            color: #d0d0e0;
+            font-size: 0.8rem;
+        }
+        .pagination a:hover {
+            border-color: #6ec1ff;
+            text-decoration: none;
+        }
+        .pagination .disabled {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        .pagination .page-info {
+            color: #8888a0;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #5a5a70;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .stats-row { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+            .stat-card { padding: 14px 10px; }
+            .stat-card .stat-value { font-size: 1.4rem; }
+            table { font-size: 0.75rem; }
+            th, td { padding: 8px 6px; }
+            .search-form input { width: 140px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-header">
+        <h1>K-AGIT Admin</h1>
+        <div>
+            <span class="admin-email">{{ admin_email }}</span>
+            <a class="back-link" href="/app">Back to App</a>
+        </div>
+    </div>
+
+    <div class="stats-row">
+        <div class="stat-card">
+            <div class="stat-value">{{ total_users }}</div>
+            <div class="stat-label">Total Users</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">{{ premium_users }}</div>
+            <div class="stat-label">Premium Users</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">{{ today_signups }}</div>
+            <div class="stat-label">Today's Signups</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <h2>Users</h2>
+            <form class="search-form" method="GET" action="/admin">
+                <input type="text" name="q" placeholder="Search by email..." value="{{ search_q }}">
+                <button type="submit">Search</button>
+                {% if search_q %}
+                <a href="/admin" class="clear-btn" style="padding:8px 12px;border:1px solid #2a2a3a;border-radius:8px;font-size:0.82rem;color:#8888a0;">Clear</a>
+                {% endif %}
+            </form>
+        </div>
+
+        {% if users.items %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Name</th>
+                    <th>Provider</th>
+                    <th>Premium</th>
+                    <th>Premium Expires</th>
+                    <th>Created</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users.items %}
+                <tr>
+                    <td>{{ user.email or '—' }}</td>
+                    <td>{{ [user.first_name, user.last_name]|select|join(' ') or '—' }}</td>
+                    <td>{{ user.auth_provider or '—' }}</td>
+                    <td>
+                        {% if user.is_premium %}
+                        <span class="badge badge-premium">Premium</span>
+                        {% else %}
+                        <span class="badge badge-free">Free</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ user.premium_expires_at.strftime('%Y-%m-%d') if user.premium_expires_at else '—' }}</td>
+                    <td>{{ user.created_at.strftime('%Y-%m-%d %H:%M') if user.created_at else '—' }}</td>
+                    <td>
+                        <form method="POST" action="/admin/toggle-premium/{{ user.id }}?page={{ user_page }}{% if search_q %}&q={{ search_q }}{% endif %}" style="display:inline;" class="toggle-form" data-email="{{ user.email|e }}" data-is-premium="{{ 'true' if user.is_premium else 'false' }}">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                            {% if user.is_premium %}
+                            <button type="submit" class="toggle-btn is-premium">Remove Premium</button>
+                            {% else %}
+                            <button type="submit" class="toggle-btn">Grant Premium</button>
+                            {% endif %}
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="pagination">
+            {% if users.has_prev %}
+            <a href="/admin?page={{ users.prev_num }}{% if search_q %}&q={{ search_q }}{% endif %}{% if payment_page > 1 %}&pp={{ payment_page }}{% endif %}">Prev</a>
+            {% else %}
+            <a class="disabled">Prev</a>
+            {% endif %}
+            <span class="page-info">Page {{ users.page }} of {{ users.pages or 1 }}</span>
+            {% if users.has_next %}
+            <a href="/admin?page={{ users.next_num }}{% if search_q %}&q={{ search_q }}{% endif %}{% if payment_page > 1 %}&pp={{ payment_page }}{% endif %}">Next</a>
+            {% else %}
+            <a class="disabled">Next</a>
+            {% endif %}
+        </div>
+        {% else %}
+        <div class="empty-state">No users found{% if search_q %} matching "{{ search_q }}"{% endif %}</div>
+        {% endif %}
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <h2>Payments</h2>
+        </div>
+
+        {% if payments.items %}
+        <table>
+            <thead>
+                <tr>
+                    <th>User Email</th>
+                    <th>Transaction ID</th>
+                    <th>Amount</th>
+                    <th>Currency</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for payment in payments.items %}
+                <tr>
+                    <td>{{ payment.user.email or '—' }}</td>
+                    <td style="font-family:monospace;font-size:0.75rem;">{{ payment.xsolla_transaction_id or '—' }}</td>
+                    <td>{{ '%.2f'|format(payment.amount) if payment.amount else '—' }}</td>
+                    <td>{{ payment.currency or '—' }}</td>
+                    <td>
+                        {% if payment.status == 'completed' %}
+                        <span class="badge badge-completed">Completed</span>
+                        {% elif payment.status == 'pending' %}
+                        <span class="badge badge-pending">Pending</span>
+                        {% elif payment.status == 'refunded' %}
+                        <span class="badge badge-refunded">Refunded</span>
+                        {% else %}
+                        <span class="badge badge-free">{{ payment.status }}</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ payment.created_at.strftime('%Y-%m-%d %H:%M') if payment.created_at else '—' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="pagination">
+            {% if payments.has_prev %}
+            <a href="/admin?pp={{ payments.prev_num }}{% if user_page > 1 %}&page={{ user_page }}{% endif %}{% if search_q %}&q={{ search_q }}{% endif %}">Prev</a>
+            {% else %}
+            <a class="disabled">Prev</a>
+            {% endif %}
+            <span class="page-info">Page {{ payments.page }} of {{ payments.pages or 1 }}</span>
+            {% if payments.has_next %}
+            <a href="/admin?pp={{ payments.next_num }}{% if user_page > 1 %}&page={{ user_page }}{% endif %}{% if search_q %}&q={{ search_q }}{% endif %}">Next</a>
+            {% else %}
+            <a class="disabled">Next</a>
+            {% endif %}
+        </div>
+        {% else %}
+        <div class="empty-state">No payments recorded yet</div>
+        {% endif %}
+    </div>
+    <script>
+    document.querySelectorAll('.toggle-form').forEach(function(form) {
+        form.addEventListener('submit', function(e) {
+            var email = form.dataset.email;
+            var isPremium = form.dataset.isPremium === 'true';
+            var action = isPremium ? 'Remove premium from' : 'Grant premium to';
+            if (!confirm(action + ' ' + email + '?')) {
+                e.preventDefault();
+            }
+        });
+    });
+    </script>
+</body>
+</html>
