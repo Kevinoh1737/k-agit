@@ -253,10 +253,6 @@
             <div class="stat-label">Total Users</div>
         </div>
         <div class="stat-card">
-            <div class="stat-value">{{ premium_users }}</div>
-            <div class="stat-label">Premium Users</div>
-        </div>
-        <div class="stat-card">
             <div class="stat-value">{{ today_signups }}</div>
             <div class="stat-label">Today's Signups</div>
         </div>
@@ -281,10 +277,7 @@
                     <th>Email</th>
                     <th>Name</th>
                     <th>Provider</th>
-                    <th>Premium</th>
-                    <th>Premium Expires</th>
                     <th>Created</th>
-                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -293,25 +286,7 @@
                     <td>{{ user.email or '—' }}</td>
                     <td>{{ [user.first_name, user.last_name]|select|join(' ') or '—' }}</td>
                     <td>{{ user.auth_provider or '—' }}</td>
-                    <td>
-                        {% if user.is_premium %}
-                        <span class="badge badge-premium">Premium</span>
-                        {% else %}
-                        <span class="badge badge-free">Free</span>
-                        {% endif %}
-                    </td>
-                    <td>{{ user.premium_expires_at.strftime('%Y-%m-%d') if user.premium_expires_at else '—' }}</td>
                     <td>{{ user.created_at.strftime('%Y-%m-%d %H:%M') if user.created_at else '—' }}</td>
-                    <td>
-                        <form method="POST" action="/admin/toggle-premium/{{ user.id }}?page={{ user_page }}{% if search_q %}&q={{ search_q }}{% endif %}" style="display:inline;" class="toggle-form" data-email="{{ user.email|e }}" data-is-premium="{{ 'true' if user.is_premium else 'false' }}">
-                            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
-                            {% if user.is_premium %}
-                            <button type="submit" class="toggle-btn is-premium">Remove Premium</button>
-                            {% else %}
-                            <button type="submit" class="toggle-btn">Grant Premium</button>
-                            {% endif %}
-                        </form>
-                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -319,13 +294,13 @@
 
         <div class="pagination">
             {% if users.has_prev %}
-            <a href="/admin?page={{ users.prev_num }}{% if search_q %}&q={{ search_q }}{% endif %}{% if payment_page > 1 %}&pp={{ payment_page }}{% endif %}">Prev</a>
+            <a href="/admin?page={{ users.prev_num }}{% if search_q %}&q={{ search_q }}{% endif %}">Prev</a>
             {% else %}
             <a class="disabled">Prev</a>
             {% endif %}
             <span class="page-info">Page {{ users.page }} of {{ users.pages or 1 }}</span>
             {% if users.has_next %}
-            <a href="/admin?page={{ users.next_num }}{% if search_q %}&q={{ search_q }}{% endif %}{% if payment_page > 1 %}&pp={{ payment_page }}{% endif %}">Next</a>
+            <a href="/admin?page={{ users.next_num }}{% if search_q %}&q={{ search_q }}{% endif %}">Next</a>
             {% else %}
             <a class="disabled">Next</a>
             {% endif %}
@@ -334,76 +309,5 @@
         <div class="empty-state">No users found{% if search_q %} matching "{{ search_q }}"{% endif %}</div>
         {% endif %}
     </div>
-
-    <div class="section">
-        <div class="section-header">
-            <h2>Payments</h2>
-        </div>
-
-        {% if payments.items %}
-        <table>
-            <thead>
-                <tr>
-                    <th>User Email</th>
-                    <th>Transaction ID</th>
-                    <th>Amount</th>
-                    <th>Currency</th>
-                    <th>Status</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for payment in payments.items %}
-                <tr>
-                    <td>{{ payment.user.email or '—' }}</td>
-                    <td style="font-family:monospace;font-size:0.75rem;">{{ payment.xsolla_transaction_id or '—' }}</td>
-                    <td>{{ '%.2f'|format(payment.amount) if payment.amount else '—' }}</td>
-                    <td>{{ payment.currency or '—' }}</td>
-                    <td>
-                        {% if payment.status == 'completed' %}
-                        <span class="badge badge-completed">Completed</span>
-                        {% elif payment.status == 'pending' %}
-                        <span class="badge badge-pending">Pending</span>
-                        {% elif payment.status == 'refunded' %}
-                        <span class="badge badge-refunded">Refunded</span>
-                        {% else %}
-                        <span class="badge badge-free">{{ payment.status }}</span>
-                        {% endif %}
-                    </td>
-                    <td>{{ payment.created_at.strftime('%Y-%m-%d %H:%M') if payment.created_at else '—' }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-
-        <div class="pagination">
-            {% if payments.has_prev %}
-            <a href="/admin?pp={{ payments.prev_num }}{% if user_page > 1 %}&page={{ user_page }}{% endif %}{% if search_q %}&q={{ search_q }}{% endif %}">Prev</a>
-            {% else %}
-            <a class="disabled">Prev</a>
-            {% endif %}
-            <span class="page-info">Page {{ payments.page }} of {{ payments.pages or 1 }}</span>
-            {% if payments.has_next %}
-            <a href="/admin?pp={{ payments.next_num }}{% if user_page > 1 %}&page={{ user_page }}{% endif %}{% if search_q %}&q={{ search_q }}{% endif %}">Next</a>
-            {% else %}
-            <a class="disabled">Next</a>
-            {% endif %}
-        </div>
-        {% else %}
-        <div class="empty-state">No payments recorded yet</div>
-        {% endif %}
-    </div>
-    <script>
-    document.querySelectorAll('.toggle-form').forEach(function(form) {
-        form.addEventListener('submit', function(e) {
-            var email = form.dataset.email;
-            var isPremium = form.dataset.isPremium === 'true';
-            var action = isPremium ? 'Remove premium from' : 'Grant premium to';
-            if (!confirm(action + ' ' + email + '?')) {
-                e.preventDefault();
-            }
-        });
-    });
-    </script>
 </body>
 </html>
